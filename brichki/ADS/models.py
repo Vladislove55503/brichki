@@ -28,6 +28,7 @@ class Ads(models.Model):
         NOT_PROVIDED = 0, 'Не предусмотрен'
         ATMOSPHERIC = 1, 'Атмосферный'
         TURBOCHARGED = 2, 'Турбированный'
+        COMPRESSOR = 3, 'Компрессор'
 
     class EquipmentType(models.IntegerChoices):
         GAS_CYLINDER = 1, 'Газобаллонное оборудование'
@@ -50,7 +51,7 @@ class Ads(models.Model):
     body = models.IntegerField(choices=Body.choices, verbose_name='Кузов')
 
     engine_type = models.IntegerField(choices=EngineType.choices, null=True, verbose_name='Двигатель')
-    boost_type = models.IntegerField(choices=BoostType.choices, null=True, verbose_name='Нагнетатель')
+    boost_type = models.IntegerField(choices=BoostType.choices, null=True, verbose_name='Наддув')
     equipment_type = models.IntegerField(choices=EquipmentType.choices, null=True, blank=True, verbose_name='Дополнительное оборудование')
 
     engine_capacity = models.FloatField(verbose_name='Объём двигателя')
@@ -59,6 +60,7 @@ class Ads(models.Model):
     mileage = models.IntegerField(default=0, verbose_name='Пробег')
     price = models.IntegerField(verbose_name='Цена')
     comment = models.CharField(max_length=10000, blank=True, default='', verbose_name='Комментарий')
+
 
     def __str__(self):
         return f'{self.brand}, {self.model}, {self.generation}, {self.engine_capacity}, {self.price}'
