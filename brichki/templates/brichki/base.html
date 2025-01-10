@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title_page }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'brichki/css/base_style.css'%}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div>
+        <div class="navbar">
+            <div class="container-site">
+                <a class="site navbar-a" href="">brichki.ru</a>
+            </div>
+            <div class="container-titles">
+                <a class="title-0 navbar-a" href="">filter</a>
+                <a class="title-1 navbar-a" href="">user</a>
+                <a class="title-0 navbar-a" href="">catalog</a>
+            </div>
+            <div class="container-user">
+                <a class="user navbar-a" href="">buser</a>
+            </div>
+        </div>
+    </div>
+    <div class="color-gradient-header"></div>
+</header>
+
+
+{% include 'ADS/includes/filter.html' %}
+
+{% include 'ADS/includes/ads.html' %}
+
+    
+<footer>
+    <div class="color-gradient-footer"></div>
+    <div class="footer">
+        <p class="email">vladwgm@gmail.com</p>
+    </div>
+</footer>
+
+</body>
+</html>

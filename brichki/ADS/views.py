@@ -4,5 +4,7 @@ from django.template import loader
 
 
 def index(request):
-    context = dict()
-    return render(request, 'base.html', context)
+    context = {
+        'title_page': 'Brichki.ru',
+    }
+    return render(request, 'brichki/base.html', context)
