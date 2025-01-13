@@ -18,9 +18,9 @@
                 <a class="site navbar-a" href="">brichki.ru</a>
             </div>
             <div class="container-titles">
-                <a class="title-0 navbar-a" href="">filter</a>
-                <a class="title-1 navbar-a" href="">user</a>
-                <a class="title-0 navbar-a" href="">catalog</a>
+                <a class="title-0 navbar-a" href="">{{ title_left }}</a>
+                <a class="title-1 navbar-a" href="">{{ title_center }}</a>
+                <a class="title-0 navbar-a" href="">{{ title_right }}</a>
             </div>
             <div class="container-user">
                 <a class="user navbar-a" href="">buser</a>
@@ -31,10 +31,11 @@
 </header>
 
 
-{% include 'ADS/includes/filter.html' %}
+{% block filter %}
+{% endblock %}
 
-{% include 'ADS/includes/ads.html' %}
-
+{% block ads %}
+{% endblock %}
     
 <footer>
     <div class="color-gradient-footer"></div>

@@ -1,22 +1,26 @@
 <div class="container-ads">
+
+    {% for obj in objs %}
     <div class="ad">
         <div class="photo-ad"></div>
         <div class="parameters-ad">
             <div class="grid-param">
-                    <span id="item-mark" class="parameter-ad">Mark</span>
-                    <span id="item-model" class="parameter-ad">Model</span>
-                    <span id="item-gen" class="parameter-ad">Generation</span>
-                </div>
+                <span id="item-brand" class="parameter-ad">{{ obj.brand }}</span>
+                <span id="item-model" class="parameter-ad">{{ obj.model }}</span>
+                <span id="item-gen" class="parameter-ad">{{ obj.generation }}</span>
+            </div>
             <div class="grid-param">
-                    <span id="item-engine" class="parameter-ad">Engine</span>
-                    <span id="item-naduv" class="parameter-ad">Naduv</span>
-                    <span id="item-capacity" class="parameter-ad">Capacity</span>
-                </div>
+                <span id="item-engine" class="parameter-ad">{{ obj.engine_type }}</span>
+                <span id="item-boost" class="parameter-ad">{{ obj.boost_type }}</span>
+                <span id="item-capacity" class="parameter-ad">{{ obj.engine_capacity }}</span>
+            </div>
             <div class="grid-param">
-                    <span id="item-body" class="parameter-ad">Body</span>
-                    <span id="item-mileage" class="parameter-ad">Mileage</span>
-                    <span id="item-price" class="parameter-ad">Price</span>
-                </div>
+                <span id="item-body" class="parameter-ad">{{ obj.body }}</span>
+                <span id="item-mileage" class="parameter-ad">{{ obj.mileage }}</span>
+                <span id="item-price" class="parameter-ad">{{ obj.price }}</span>
+            </div>
         </div>
     </div>
+    {% endfor %}
+
 </div>
