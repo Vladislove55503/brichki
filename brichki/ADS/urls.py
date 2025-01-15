@@ -3,6 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    # /ADS/
     path('', views.index, name="index"),
 ]

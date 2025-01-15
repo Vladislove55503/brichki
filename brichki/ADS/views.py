@@ -10,5 +10,6 @@ def index(request):
         'title_page': 'Brichki.ru',
         'title_center': 'filter',
         'title_right': 'catalog',
+        'Ads': Ads,
     }
     return render(request, 'ADS/main.html', context)

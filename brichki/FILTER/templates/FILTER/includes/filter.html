@@ -1,0 +1,42 @@
+<form method="post">
+    {% csrf_token %}
+
+    <div class="container-filter">
+    <div class="grid-param">
+        <select>
+            {% for a in Ads.Body.types %}
+                <option>{{ a.name }}</option>
+            {% endfor%}
+        </select>
+
+        <span id="filter-mark" class="filter-param">Mark</span>
+        <span id="filter-model" class="filter-param">Model</span>
+        <span id="filter-gen" class="filter-param">Generation</span>
+    </div>
+
+    <div class="grid-param">
+        <div class="filter-param-double">
+            <span id="filter-engine" class="param">Engine</span>
+            <span id="filter-naduv" class="param">Naduv</span>
+        </div>
+        <div class="filter-param-double">
+            <span id="filter-capcty" class="param">Capacity from</span>
+            <span id="filter-capcty-before" class="param double">before</span>
+        </div>
+        <span id="filter-drive" class="filter-param">Drive</span>
+    </div>
+
+    <div class="grid-param">
+        <span id="filter-body" class="filter-param">Body</span>
+        <div class="filter-param-double">
+            <input type="text" maxlength="11" inputmode="numeric" id="filter-mileage" class="param" placeholder="Mileage from">
+            <input type="text" maxlength="11" inputmode="numeric" id="filter-mileage-before" class="param double" placeholder="before">
+        </div>
+        <div class="filter-param-double">
+            <input type="text" maxlength="11" inputmode="numeric" id="filter-price" class="param" placeholder="Price from">
+            <input type="text" maxlength="11" inputmode="numeric" id="filter-price-before" class="param double" placeholder="before">
+        </div>
+    </div>
+</div>
+
+</form>
