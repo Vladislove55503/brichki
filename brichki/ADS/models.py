@@ -4,36 +4,12 @@ from FILTER.models import Brand
 from FILTER.models import Model
 from FILTER.models import Generation
 
+from FILTER.models import Body
+from FILTER.models import EngineType
+from FILTER.models import BoostType
+from FILTER.models import Drive
+from FILTER.models import Broken
 
-class Body(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class EngineType(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class BoostType(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Drive(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
-
-class Broken(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.name
 
 class Ads(models.Model):
 
