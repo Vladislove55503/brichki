@@ -4,34 +4,42 @@
     <div class="container-filter">
 
         <div class="grid-param">
+
             <select id="filter-brand" name="brand" class="filter-param">
-                <option value="">Any</option>
+                <option value=""><span class="any">Марка</span></option>
                 {% for b in Brand %}
                     <option value="{{ b.pk }}">{{ b }}</option>
                 {% endfor %}
             </select>
+
             <select id="filter-model" name="model" class="filter-param">
-                <option value="">Any</option>
+                <option value=""><span class="any">Модель</span></option>
                 {% for m in Model %}
-                    <option value="{{ m.pk }}">{{ m }}</option>
+                    <option id="{{ m.brand_id }}" value="{{ m.pk }}">{{ m }}</option>
                 {% endfor %}
             </select>
+
             <select id="filter-gen" name="generation" class="filter-param">
-                <option value="">Any</option>
+                <option value=""><span class="any">Поколение</span></option>
                 {% for g in Generation %}
-                    <option value="{{ g.pk }}">{{ g }}</option>
+                    <option id="{{ g.model_id }}" value="{{ g.pk }}">{{ g }}</option>
                 {% endfor %}
             </select>
+
+
+
         </div>
 
         <div class="grid-param">
             <div class="filter-param-double">
                 <select id="filter-engine" name="engine" class="param">
+                    <option value=""><span class="any">Двигатель</span></option>
                     {% for e in EngineType %}
                         <option value="{{ e.pk }}">{{ e }}</option>
                     {% endfor %}
                 </select>
                 <select id="filter-boost" name="boost" class="param">
+                    <option value=""><span class="any">Нагнетатель</span></option>
                     {% for b in BoostType %}
                         <option value="{{ b.pk }}">{{ b }}</option>
                     {% endfor %}
@@ -42,6 +50,7 @@
                 <input type="text" name="capcty-before" maxlength="11" inputmode="numeric" id="filter-capcty-before" class="param double" placeholder="before">
             </div>
             <select id="filter-drive" name="drive" class="filter-param">
+                <option value=""><span class="any">Привод</span></option>
                 {% for d in Drive %}
                     <option value="{{ d.pk }}">{{ d }}</option>
                 {% endfor %}
@@ -50,6 +59,7 @@
 
         <div class="grid-param">
             <select id="filter-body" name="body" class="filter-param">
+                <option value=""><span class="any">Кузов</span></option>
                 {% for b in Body %}
                     <option value="{{ b.pk }}">{{ b }}</option>
                 {% endfor %}
@@ -64,7 +74,7 @@
             </div>
         </div>
 
-        <input type="submit" value="Resultat">
+        <input id="result" type="submit" value="Показать результаты">
 
     </div>
 </form>
