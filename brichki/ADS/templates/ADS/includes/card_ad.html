@@ -2,12 +2,12 @@
     <div class="card">
         <div class="card-head">
             <div class="card-title">
-                <span>BMW</span>     
-                <span>M4</span>     
-                <span>F82</span>     
+                <span>{{ brand }}</span>
+                <span>{{ model }}</span>
+                <span>{{ generation }}</span>
             </div>
             <div class="card-title">
-                <span>270 000 ₽</span>
+                <span>{{ price }} ₽</span>
             </div>
         </div>
 
@@ -17,26 +17,12 @@
                     <span>Характеристики</span>
                 </div>
                 <div class="info">
+                    {% for key, value in ad_parameters.items %}
                     <div>
-                        <span class="parameter">Двигатель</span>
-                        <span id="engine">Бензин</span>
+                        <span class="parameter">{{ key }}</span>
+                        <span>{{ value }}</span>
                     </div>
-                    <div>
-                        <span class="parameter">Нагнетатель</span>
-                        <span id="boost">Турбированный</span>
-                    </div>
-                    <div>
-                        <span class="parameter">Кузов</span>
-                        <span id="body">Купе</span>
-                    </div>
-                    <div>
-                        <span class="parameter">Привод</span>
-                        <span id="drive">Задний</span>
-                    </div>
-                    <div>
-                        <span class="parameter">Пробег</span>
-                        <span id="mileage">270 000</span>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="parameter-info">
@@ -50,7 +36,7 @@
             <div class="title-comment">
                 <span>Комментарий продавца</span>
             </div>
-            <span>Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями. Коментарный коментарий про комментарий о комментарии с комментариями.</span>
+            <span>{{ comment }}</span>
         </div>
     </div>
 </div>

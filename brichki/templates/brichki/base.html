@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title_page }}</title>
+    <title>Brichki.ru</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'brichki/css/base_style.css'%}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,8 +18,8 @@
                 <a class="site navbar-a" href="">brichki.ru</a>
             </div>
             <div class="container-titles">
-                <a class="title-0 navbar-a" href="">{{ title_left }}</a>
-                <a class="title-1 navbar-a" href="">{{ title_center }}</a>
+                <a class="title-0 navbar-a" href="{% url 'ADS:main_page' %}">{{ title_left }}</a>
+                <span class="title-1 navbar-a">{{ title_center }}</span>
                 <a class="title-0 navbar-a" href="">{{ title_right }}</a>
             </div>
             <div class="container-user">

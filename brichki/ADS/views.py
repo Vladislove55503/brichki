@@ -1,5 +1,6 @@
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.template import Engine
 
 from ADS.models import Ads
 from FILTER.models import Brand
@@ -43,7 +44,6 @@ def main_page(request):
         ads = Ads.objects.all()
 
     context = {
-        'title_page': 'Brichki.ru',
         'title_center': 'filter',
         'title_right': 'catalog',
 
@@ -62,5 +62,28 @@ def main_page(request):
 
     return render(request, 'ADS/main_page.html', context)
 
-def ad_page(request):
-    pass
+
+def ad_page(request, ad_pk):
+    ad = get_object_or_404(Ads, pk=ad_pk)
+
+    context = {
+        'title_left': 'filter',
+        'title_center': 'ad',
+        'title_right': 'catalog',
+
+        'brand': Brand.objects.get(pk=ad.brand_id),
+        'model': Model.objects.get(pk=ad.model_id),
+        'generation': Generation.objects.get(pk=ad.generation_id),
+        'price': ad.price,
+        'comment': ad.comment,
+
+        'ad_parameters': {
+            'Двигатель': EngineType.objects.get(pk=ad.engine_type_id),
+            'Нагнетатель': BoostType.objects.get(pk=ad.boost_type_id),
+            'Кузов': Body.objects.get(pk=ad.brand_id),
+            'Привод': Drive.objects.get(pk=ad.drive_id),
+            'Пробег': ad.mileage,
+        },
+    }
+
+    return render(request, 'ADS/ad_page.html', context)

@@ -22,6 +22,6 @@ from ADS import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ADS/', include('ADS.urls')),
-    # path('', views.index, name="index"), # ВРЕМЕННО ! Чтобы не вводить '/ADS/' в поисковой строке.
+    path('', include('ADS.urls')),
+    # path('ADS/', include('ADS.urls')),
 ]
