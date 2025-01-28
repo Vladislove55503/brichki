@@ -12,7 +12,7 @@ from FILTER.models import Drive
 from FILTER.models import Broken
 
 
-def index(request):
+def main_page(request):
     print(f'INDEX - {request.POST}')
 
     if request.POST:
@@ -37,7 +37,6 @@ def index(request):
         for key, value in filter_parameter.items():
             if value:
                 filters &= Q(**{key: value})
-        print(filters)
 
         ads = Ads.objects.filter(filters)
     else:
@@ -61,4 +60,7 @@ def index(request):
         'Broken': Broken.objects.all(),
     }
 
-    return render(request, 'ADS/main.html', context)
+    return render(request, 'ADS/main_page.html', context)
+
+def ad_page(request):
+    pass
