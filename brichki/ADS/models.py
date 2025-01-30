@@ -26,13 +26,13 @@ class Ads(models.Model):
     broken = models.ForeignKey(Broken, on_delete=models.SET_NULL, null=True, verbose_name='Битая')
     mileage = models.IntegerField(default=0, verbose_name='Пробег')
     price = models.IntegerField(verbose_name='Цена')
-    comment = models.CharField(max_length=10000, blank=True, default='', verbose_name='Комментарий')
+    comment = models.ForeignKey('Comments', on_delete=models.SET_NULL, null=True, verbose_name='Комментарий')
 
     def __str__(self):
         return f'{self.brand}, {self.model}, {self.generation}, {self.engine_capacity}, {self.price}'
 
-class Comment(models.Model):
-    text = models.CharField(max_length=10000, blank=True, default='', verbose_name='Комментарий')
+class Comments(models.Model):
+    text = models.CharField(max_length=10000, blank=True, default='')
 
     def __str__(self):
-        return f'{self.comment}'
+        return f'{self.text}'
