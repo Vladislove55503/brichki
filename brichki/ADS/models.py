@@ -1,14 +1,7 @@
 from django.db import models
 
-from FILTER.models import Brand
-from FILTER.models import Model
-from FILTER.models import Generation
-
-from FILTER.models import Body
-from FILTER.models import EngineType
-from FILTER.models import BoostType
-from FILTER.models import Drive
-from FILTER.models import Broken
+from FILTER.models import Brand, Model, Generation, Body
+from FILTER.models import EngineType, BoostType, Drive, Broken
 
 
 class Ads(models.Model):
@@ -31,8 +24,17 @@ class Ads(models.Model):
     def __str__(self):
         return f'{self.brand}, {self.model}, {self.generation}, {self.engine_capacity}, {self.price}'
 
+
 class Comments(models.Model):
     text = models.CharField(max_length=10000, blank=True, default='')
 
     def __str__(self):
         return f'{self.text}'
+
+
+class Photos(models.Model):
+    ad = models.ForeignKey('Ads', on_delete=models.CASCADE)
+    photo = models.ImageField(upload_to='ADS/photos')
+
+    def __str__(self):
+        return f'Для объявления - {self.ad}'

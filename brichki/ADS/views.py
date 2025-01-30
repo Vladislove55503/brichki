@@ -2,14 +2,8 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 from ADS.models import Ads
-from FILTER.models import Brand
-from FILTER.models import Model
-from FILTER.models import Generation
-from FILTER.models import Body
-from FILTER.models import EngineType
-from FILTER.models import BoostType
-from FILTER.models import Drive
-from FILTER.models import Broken
+from FILTER.models import Brand, Model, Generation, Body
+from FILTER.models import EngineType, BoostType, Drive, Broken
 
 
 def main_page(request):
@@ -36,7 +30,6 @@ def main_page(request):
         for key, value in filter_parameter.items():
             if value:
                 filters &= Q(**{key: value})
-        print(filters)
 
         ads = Ads.objects.filter(filters).order_by(request.POST['sort'])
     else:
