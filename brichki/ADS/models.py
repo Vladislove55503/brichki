@@ -12,7 +12,6 @@ from FILTER.models import Broken
 
 
 class Ads(models.Model):
-
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, verbose_name='Марка')
     model = models.ForeignKey(Model, on_delete=models.SET_NULL, null=True, verbose_name='Модель')
     generation = models.ForeignKey(Generation, on_delete=models.SET_NULL, null=True, verbose_name='Поколение')
@@ -29,6 +28,11 @@ class Ads(models.Model):
     price = models.IntegerField(verbose_name='Цена')
     comment = models.CharField(max_length=10000, blank=True, default='', verbose_name='Комментарий')
 
-
     def __str__(self):
         return f'{self.brand}, {self.model}, {self.generation}, {self.engine_capacity}, {self.price}'
+
+class Comment(models.Model):
+    text = models.CharField(max_length=10000, blank=True, default='', verbose_name='Комментарий')
+
+    def __str__(self):
+        return f'{self.comment}'

@@ -105,6 +105,7 @@ input {
     display: flex;
     flex-direction: column;
     min-width: 700px;
+    margin: 0 18%;
 }
 
 .grid-param {
@@ -115,7 +116,7 @@ input {
 .filter-param {
     display: flex;
     margin: 2px;
-    padding: 3px 8px; 
+    padding: 3px 8px;
     border: 1.5px darkslateblue solid;
     border-radius: 5px;
 }
@@ -151,12 +152,20 @@ input {
      outline: none;
 }
 
+#result {
+    padding: 3px;
+    border: 1.5px darkslateblue solid;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 3px 8px;
+}
+
 /* END filter */
 
 /* ads */
 
 .container-ads {
-    margin: 25px 20%;
+    margin: 25px 25%;
 }
 
 .ad {

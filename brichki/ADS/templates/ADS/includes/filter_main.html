@@ -26,8 +26,6 @@
                 {% endfor %}
             </select>
 
-
-
         </div>
 
         <div class="grid-param">
@@ -47,7 +45,7 @@
             </div>
             <div class="filter-param-double">
                 <input type="text" name="capcty" maxlength="11" inputmode="numeric" id="filter-capcty" class="param" placeholder="Capacity from">
-                <input type="text" name="capcty-before" maxlength="11" inputmode="numeric" id="filter-capcty-before" class="param double" placeholder="before">
+                <input type="text" name="capcty-to" maxlength="11" inputmode="numeric" id="filter-capcty-to" class="param double" placeholder="to">
             </div>
             <select id="filter-drive" name="drive" class="filter-param">
                 <option value=""><span class="any">Привод</span></option>
@@ -66,15 +64,26 @@
             </select>
             <div class="filter-param-double">
                 <input type="text" name="mileage" maxlength="11" inputmode="numeric" id="filter-mileage" class="param" placeholder="Mileage from">
-                <input type="text" name="mileage-before" maxlength="11" inputmode="numeric" id="filter-mileage-before" class="param double" placeholder="before">
+                <input type="text" name="mileage-to" maxlength="11" inputmode="numeric" id="filter-mileage-to" class="param double" placeholder="to">
             </div>
             <div class="filter-param-double">
                 <input type="text" name="price" maxlength="11" inputmode="numeric" id="filter-price" class="param" placeholder="Price from">
-                <input type="text" name="price-before" maxlength="11" inputmode="numeric" id="filter-price-before" class="param double" placeholder="before">
+                <input type="text" name="price-to" maxlength="11" inputmode="numeric" id="filter-price-to" class="param double" placeholder="to">
             </div>
         </div>
 
-        <input id="result" type="submit" value="Показать результаты">
+        <div class="grid-param">
+
+            <select id="sort" name="sort" class="filter-param">
+                <option value="pk"><span class="any">Сортировка</span></option>
+                {% for key, value in sort_list.items %}
+                    <option value="{{ value }}">{{ key }}</option>
+                {% endfor %}
+            </select>
+
+            <input id="result" type="submit" value="Показать результаты">
+
+        </div>
 
     </div>
 </form>

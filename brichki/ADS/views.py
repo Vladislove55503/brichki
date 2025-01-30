@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from django.template import Engine
 
 from ADS.models import Ads
 from FILTER.models import Brand
@@ -14,10 +13,9 @@ from FILTER.models import Broken
 
 
 def main_page(request):
-    print(f'INDEX - {request.POST}')
+    print(f'main_page - {request.POST, request.GET}')
 
     if request.POST:
-        print('POST')
         filter_parameter = {
             'brand_id': request.POST['brand'],
             'model_id': request.POST['model'],
@@ -25,11 +23,11 @@ def main_page(request):
             'engine_type_id': request.POST['engine'],
             'boost_type_id': request.POST['boost'],
             'engine_capacity__gte': request.POST['capcty'],
-            'engine_capacity__lte': request.POST['capcty-before'],
+            'engine_capacity__lte': request.POST['capcty-to'],
             'mileage__gte': request.POST['mileage'],
-            'mileage__lte': request.POST['mileage-before'],
+            'mileage__lte': request.POST['mileage-to'],
             'price__gte': request.POST['price'],
-            'price__lte': request.POST['price-before'],
+            'price__lte': request.POST['price-to'],
             'drive_id': request.POST['drive'],
             'body_id': request.POST['body'],
         }
@@ -38,8 +36,9 @@ def main_page(request):
         for key, value in filter_parameter.items():
             if value:
                 filters &= Q(**{key: value})
+        print(filters)
 
-        ads = Ads.objects.filter(filters)
+        ads = Ads.objects.filter(filters).order_by(request.POST['sort'])
     else:
         ads = Ads.objects.all()
 
@@ -58,12 +57,19 @@ def main_page(request):
         'BoostType': BoostType.objects.all(),
         'Drive': Drive.objects.all(),
         'Broken': Broken.objects.all(),
+
+        'sort_list': {
+            'По возрастанию цены': 'price',
+            'По убыванию цены': '-price',
+            'По пробегу': 'mileage',
+        },
     }
 
     return render(request, 'ADS/main_page.html', context)
 
 
 def ad_page(request, ad_pk):
+    print(f'ad_page - {request.POST, request.GET}')
     ad = get_object_or_404(Ads, pk=ad_pk)
 
     context = {
