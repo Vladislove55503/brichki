@@ -11,13 +11,15 @@
                     </div>
                     <div class="grid-param">
                         <span id="item-engine" class="parameter-ad">{{ obj.engine_type }}</span>
-                        <span id="item-boost" class="parameter-ad">{{ obj.boost_type }}</span>
-                        <span id="item-capacity" class="parameter-ad">{{ obj.engine_capacity }}</span>
+                        {% if obj.engine_type != electro %}
+                            <span id="item-boost" class="parameter-ad">{{ obj.boost_type }}</span>
+                            <span id="item-capacity" class="parameter-ad">{{ obj.engine_capacity }} л.</span>
+                        {% endif %}
                     </div>
                     <div class="grid-param">
                         <span id="item-body" class="parameter-ad">{{ obj.body }}</span>
-                        <span id="item-mileage" class="parameter-ad">{{ obj.mileage }}</span>
-                        <span id="item-price" class="parameter-ad">{{ obj.price }}</span>
+                        <span id="item-mileage" class="parameter-ad">{{ obj.mileage }} км.</span>
+                        <span id="item-price" class="parameter-ad">{{ obj.price }} ₽</span>
                     </div>
                 </div>
             </div>

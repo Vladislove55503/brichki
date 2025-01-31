@@ -47,6 +47,8 @@ def main_page(request):
 
         'Body': Body.objects.all(),
         'EngineType': EngineType.objects.all(),
+        'electro': EngineType.objects.get(pk=4),
+
         'BoostType': BoostType.objects.all(),
         'Drive': Drive.objects.all(),
         'Broken': Broken.objects.all(),
