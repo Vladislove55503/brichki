@@ -25,9 +25,15 @@
                     {% endfor %}
                 </div>
             </div>
+            
             <div class="parameter-info">
                 <div class="title-info">
                     <span>Фото</span>
+                </div>
+                <div>
+                    {% for p in Photos %}
+                        <img class="card-photo" src="{{ p.photo }}">
+                    {% endfor %}
                 </div>
             </div>
         </div>

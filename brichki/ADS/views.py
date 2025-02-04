@@ -1,13 +1,12 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
-from ADS.models import Ads
+from ADS.models import Ads, Photos
 from FILTER.models import Brand, Model, Generation, Body
 from FILTER.models import EngineType, BoostType, Drive, Broken
 
 
 def main_page(request):
-    print(f'main_page - {request.POST, request.GET}')
 
     if request.POST:
         filter_parameter = {
@@ -27,6 +26,7 @@ def main_page(request):
         }
 
         filters = Q()
+
         for key, value in filter_parameter.items():
             if value:
                 filters &= Q(**{key: value})
@@ -34,6 +34,7 @@ def main_page(request):
         ads = Ads.objects.filter(filters).order_by(request.POST['sort'])
     else:
         ads = Ads.objects.all()
+
 
     context = {
         'title_center': 'filter',
@@ -64,7 +65,7 @@ def main_page(request):
 
 
 def ad_page(request, ad_pk):
-    print(f'ad_page - {request.POST, request.GET}')
+
     ad = get_object_or_404(Ads, pk=ad_pk)
 
     context = {
@@ -85,6 +86,8 @@ def ad_page(request, ad_pk):
             'Привод': Drive.objects.get(pk=ad.drive_id),
             'Пробег': ad.mileage,
         },
+
+        'Photos': Photos.objects.filter(ad_id=ad_pk)
     }
 
     return render(request, 'ADS/ad_page.html', context)

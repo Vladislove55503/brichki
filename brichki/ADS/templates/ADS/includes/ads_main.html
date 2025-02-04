@@ -2,7 +2,6 @@
     {% for obj in Ads %}
         <a href="{% url 'ADS:ad_page' obj.pk %}">
             <div class="ad">
-                <div class="photo-ad"></div>
                 <div class="parameters-ad">
                     <div class="grid-param">
                         <span id="item-brand" class="parameter-ad">{{ obj.brand }}</span>
