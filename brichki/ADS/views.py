@@ -2,12 +2,18 @@ from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 
 from ADS.models import Ads, Photos
-from FILTER.models import Brand, Model, Generation, Body
-from FILTER.models import EngineType, BoostType, Drive, Broken
-
+from FILTER.models import (
+    Brand,
+    Model,
+    Generation,
+    Body,
+    EngineType,
+    BoostType,
+    Drive,
+    Broken,
+)
 
 def main_page(request):
-
     if request.POST:
         filter_parameter = {
             'brand_id': request.POST['brand'],
@@ -65,8 +71,12 @@ def main_page(request):
 
 
 def ad_page(request, ad_pk):
-
     ad = get_object_or_404(Ads, pk=ad_pk)
+
+    if Photos.objects.filter(ad_id=ad_pk):
+        photos = Photos.objects.filter(ad_id=ad_pk)
+    else:
+        photos = None
 
     context = {
         'title_left': 'filter',
@@ -87,7 +97,7 @@ def ad_page(request, ad_pk):
             'Пробег': ad.mileage,
         },
 
-        'Photos': Photos.objects.filter(ad_id=ad_pk)
+        'Photos': photos
     }
 
     return render(request, 'ADS/ad_page.html', context)
