@@ -13,6 +13,7 @@ from FILTER.models import (
     Broken,
 )
 
+
 def main_page(request):
     if request.POST:
         filter_parameter = {
@@ -42,6 +43,12 @@ def main_page(request):
         ads = Ads.objects.all()
 
 
+    # brand_selected = ''
+    # if request.POST:
+    #     brand_selected = int(request.POST['brand'])
+    #     print(f'brand_selected type-{type(brand_selected)}: {brand_selected}')
+
+
     context = {
         'title_center': 'filter',
         'title_right': 'catalog',
@@ -49,13 +56,12 @@ def main_page(request):
         'Ads': ads,
 
         'Brand': Brand.objects.all(),
+        # 'brand_selected': brand_selected,
         'Model': Model.objects.all(),
         'Generation': Generation.objects.all(),
-
         'Body': Body.objects.all(),
         'EngineType': EngineType.objects.all(),
         'electro': EngineType.objects.get(pk=4),
-
         'BoostType': BoostType.objects.all(),
         'Drive': Drive.objects.all(),
         'Broken': Broken.objects.all(),

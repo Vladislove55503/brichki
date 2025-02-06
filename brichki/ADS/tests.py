@@ -53,7 +53,29 @@ def create_filter_broken(pk=1, name='any'):
 def create_filter_comment(pk=1, text='any'):
     comment = Comments.objects.create(pk=pk, text=text)
 
+def create_filter_items(
+        brand=1,
+        model=1,
+        generation=1,
+        body=1,
+        engine_type=1,
+        boost_type=1,
+        drive=1,
+        broken=1,
+        comment=1,
+):
+    create_filter_brand(brand)
+    create_filter_model(model)
+    create_filter_generation(generation)
+    create_filter_body(body)
+    create_filter_engine_type(engine_type)
+    create_filter_boost_type(boost_type)
+    create_filter_drive(drive)
+    create_filter_broken(broken)
+    create_filter_comment(comment)
+
 def create_ad(
+        pk=1,
         brand_pk=1,
         model_pk=1,
         generation_pk=1,
@@ -64,18 +86,8 @@ def create_ad(
         broken_pk=1,
         comment_pk=1,
 ):
-    create_filter_brand()
-    create_filter_model()
-    create_filter_generation()
-    create_filter_body()
-    create_filter_engine_type()
-    create_filter_boost_type()
-    create_filter_drive()
-    create_filter_broken()
-    create_filter_comment()
-
     ad = Ads.objects.create(
-        pk=1,
+        pk=pk,
         brand=Brand.objects.get(pk=brand_pk),
         model=Model.objects.get(pk=model_pk),
         generation=Generation.objects.get(pk=generation_pk),
@@ -92,13 +104,49 @@ def create_ad(
 
 
 class MainPageViewTests(TestCase):
-    def test_view_status_code(self):
+    def test_view_get_status_code(self):
+        """
+        Page status in the GET request is 200.
+        """
         create_filter_engine_type(pk=4, name='Электро')
+
         response = self.client.get('')
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_post_status_code(self):
+        """
+        Page status in the POST request is 200.
+        """
+        data_POST = {
+            'brand': '',
+            'model': '',
+            'generation': '',
+            'engine': '',
+            'boost': '',
+            'capcty': '',
+            'capcty-to': '',
+            'mileage': '',
+            'mileage-to': '',
+            'price': '',
+            'price-to': '',
+            'drive': '',
+            'body': '',
+            'sort': 'pk',
+        }
+
+        create_filter_engine_type(pk=4, name='Электро')
+
+        response = self.client.post('', data=data_POST)
+
         self.assertEqual(response.status_code, 200)
 
     def test_view_template_used(self):
+        """
+        All necessary templates are used.
+        """
         create_filter_engine_type(pk=4, name='Электро')
+
         response = self.client.get('')
 
         templates = [
@@ -112,7 +160,11 @@ class MainPageViewTests(TestCase):
             self.assertTemplateUsed(response, template)
 
     def test_view_template_not_used(self):
+        """
+        Unnecessary templates are not used.
+        """
         create_filter_engine_type(pk=4, name='Электро')
+
         response = self.client.get('')
 
         templates = [
@@ -123,9 +175,16 @@ class MainPageViewTests(TestCase):
         for template in templates:
             self.assertTemplateNotUsed(response, template)
 
-    def test_not_contains(self):
+    def test_not_contains_boost_and_capacity_in_electric(self):
+        """
+        In a short ad, where the engine type is electric
+        (the view knows it by "pk=4"),
+        there should be no boost type and engine capacity.
+        """
         create_filter_engine_type(pk=4, name='Электро')
+        create_filter_items()
         create_ad(engine_type_pk=4)
+
         response = self.client.get('')
 
         texts = [
@@ -134,21 +193,83 @@ class MainPageViewTests(TestCase):
         ]
 
         for text in texts:
-            self.assertNotContains(
-            response,
-            text=text,
-            status_code=200,
-            )
+            self.assertNotContains(response, text=text, status_code=200)
+
+    def test_contains_boost_and_capacity_in_not_electric(self):
+        """
+        In a short ad, where the engine type is not electric (electric - pk=4),
+        the boost type and engine capacity should be indicated.
+        """
+        create_filter_engine_type(pk=4, name='Электро')
+        create_filter_items()
+        create_ad(engine_type_pk=1)
+
+        response = self.client.get('')
+
+        texts = [
+            '<span id="item-boost" class="parameter-ad">',
+            '<span id="item-capacity" class="parameter-ad">',
+        ]
+
+        for text in texts:
+            self.assertContains(response, text=text, status_code=200)
+
+    def test_correct_output_after_filtering(self):
+        create_filter_brand(pk=1, name='Audi')
+        create_filter_brand(pk=2, name='BMW')
+
+        create_filter_items(brand=3)
+
+        create_ad(pk=1, brand_pk=1)
+        create_ad(pk=2, brand_pk=2)
+
+        data_POST = {
+            'brand': '2',
+            'model': '',
+            'generation': '',
+            'engine': '',
+            'boost': '',
+            'capcty': '',
+            'capcty-to': '',
+            'mileage': '',
+            'mileage-to': '',
+            'price': '',
+            'price-to': '',
+            'drive': '',
+            'body': '',
+            'sort': 'pk',
+        }
+
+        create_filter_engine_type(pk=4, name='Электро')
+
+        response = self.client.post('', data=data_POST)
+
+        tag_BMW = '<span id="item-brand" class="parameter-ad">BMW</span>'
+        tag_Audi = '<span id="item-brand" class="parameter-ad">Audi</span>'
+
+        self.assertContains(response, text=tag_BMW, status_code=200)
+        self.assertNotContains(response, text=tag_Audi, status_code=200)
 
 
 class AdPageViewTests(TestCase):
     def test_view_status_code(self):
+        """
+        The page status is 200.
+        """
+        create_filter_items()
         create_ad()
+
         response = self.client.get('/1')
+
         self.assertEqual(response.status_code, 200)
 
     def test_view_template_used(self):
+        """
+        All necessary templates are used.
+        """
+        create_filter_items()
         create_ad()
+
         response = self.client.get('/1')
 
         templates = [
@@ -161,7 +282,12 @@ class AdPageViewTests(TestCase):
             self.assertTemplateUsed(response, template)
 
     def test_view_template_not_used(self):
+        """
+        Unnecessary templates are not used.
+        """
+        create_filter_items()
         create_ad()
+
         response = self.client.get('/1')
 
         templates = [

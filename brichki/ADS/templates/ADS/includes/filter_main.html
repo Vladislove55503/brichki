@@ -8,7 +8,11 @@
             <select id="filter-brand" name="brand" class="filter-param">
                 <option value=""><span class="any">Марка</span></option>
                 {% for b in Brand %}
-                    <option value="{{ b.pk }}">{{ b }}</option>
+<!--                    {% if b.pk == brand_selected %}-->
+<!--                        <option value="{{ b.pk }}" selected>{{ b }}</option>-->
+<!--                    {% else %}-->
+                        <option value="{{ b.pk }}">{{ b }}</option>
+<!--                    {% endif %}-->
                 {% endfor %}
             </select>
 
