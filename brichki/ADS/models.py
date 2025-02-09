@@ -66,8 +66,13 @@ class Ads(models.Model):
     price = models.IntegerField(verbose_name='Цена')
 
 
+    class Meta:
+        verbose_name = 'Ad'
+        verbose_name_plural = 'Ads'
+
+
     def __str__(self):
-        return self.brand, self.generation, self.price
+        return f'{self.brand}, {self.generation}, {self.price}'
 
 
 class Comments(models.Model):
