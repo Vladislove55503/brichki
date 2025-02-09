@@ -215,6 +215,9 @@ class MainPageViewTests(TestCase):
             self.assertContains(response, text=text, status_code=200)
 
     def test_correct_output_after_filtering(self):
+        """
+        The filter logic is working correctly.
+        """
         create_filter_brand(pk=1, name='Audi')
         create_filter_brand(pk=2, name='BMW')
 

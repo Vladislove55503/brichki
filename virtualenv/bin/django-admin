@@ -1,4 +1,4 @@
-#!/home/vlad/Документы/Project_01/virtualenv/bin/python3
+#!/home/vlad/Документы/Project_01/virtualenv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

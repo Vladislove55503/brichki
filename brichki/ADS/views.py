@@ -43,12 +43,6 @@ def main_page(request):
         ads = Ads.objects.all()
 
 
-    # brand_selected = ''
-    # if request.POST:
-    #     brand_selected = int(request.POST['brand'])
-    #     print(f'brand_selected type-{type(brand_selected)}: {brand_selected}')
-
-
     context = {
         'title_center': 'filter',
         'title_right': 'catalog',
@@ -56,7 +50,6 @@ def main_page(request):
         'Ads': ads,
 
         'Brand': Brand.objects.all(),
-        # 'brand_selected': brand_selected,
         'Model': Model.objects.all(),
         'Generation': Generation.objects.all(),
         'Body': Body.objects.all(),
@@ -79,11 +72,6 @@ def main_page(request):
 def ad_page(request, ad_pk):
     ad = get_object_or_404(Ads, pk=ad_pk)
 
-    if Photos.objects.filter(ad_id=ad_pk):
-        photos = Photos.objects.filter(ad_id=ad_pk)
-    else:
-        photos = None
-
     context = {
         'title_left': 'filter',
         'title_center': 'ad',
@@ -103,7 +91,7 @@ def ad_page(request, ad_pk):
             'Пробег': ad.mileage,
         },
 
-        'Photos': photos
+        'Photos': Photos.objects.filter(ad_id=ad_pk),
     }
 
     return render(request, 'ADS/ad_page.html', context)
