@@ -38,9 +38,28 @@ def main_page(request):
             if value:
                 filters &= Q(**{key: value})
 
-        ads = Ads.objects.filter(filters).order_by(request.POST['sort'])
+        ads = (Ads.objects.filter(filters).order_by(request.POST['sort'])
+        .select_related(
+            'brand',
+            'model',
+            'generation',
+            'body',
+            'engine_type',
+            'boost_type',
+            'drive',
+            'broken',
+        ))
     else:
-        ads = Ads.objects.all()
+        ads = Ads.objects.all().select_related(
+            'brand',
+            'model',
+            'generation',
+            'body',
+            'engine_type',
+            'boost_type',
+            'drive',
+            'broken',
+        )
 
 
     context = {

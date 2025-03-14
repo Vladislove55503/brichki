@@ -1,5 +1,4 @@
 # from django.test import SimpleTestCase
-
 from django.test import TestCase
 
 from ADS.models import Ads, Comments
