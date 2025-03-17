@@ -1,0 +1,40 @@
+{% extends 'brichki/base.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'brichki/css/header_footer_style.css' %}"/>
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'USERS/css/user.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="general">
+    <span class="title-user">Вход</span>
+    <div class="container-user-data">
+        <div class="item-user">
+            <span>Имя:</span>
+            <input type="text">
+        </div>
+    </div>
+    <div class="container-user-data">
+        <div class="item-user">
+            <span>Пароль:</span>
+            <input type="text">
+        </div>
+    </div>
+    <a href="">
+        <div class="button-sign-in-out">
+            <span>Войти</span>
+        </div>
+    </a>
+    <a href="{% url 'USERS:registration' %}">
+        <div class="button-registration">
+            <span>Регистрация</span>
+        </div>
+    </a>
+</div>
+{% endblock %}

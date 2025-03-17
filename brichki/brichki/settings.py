@@ -38,6 +38,7 @@ INTERNAL_IPS = [
 INSTALLED_APPS = [
     'FILTER.apps.FilterConfig',
     'ADS.apps.AdsConfig',
+    'USERS.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

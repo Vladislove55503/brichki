@@ -1,0 +1,37 @@
+{% extends 'brichki/base.html' %}
+
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'brichki/css/header_footer_style.css' %}"/>
+<link rel="stylesheet"
+      type="text/css"
+      href="{% static 'USERS/css/user.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="general">
+    <span class="title-user">Обо мне:</span>
+    <div class="container-account">
+        <div class="item-account">
+            <span>Имя:</span>
+            <span>Владислав</span>
+        </div>
+        <div class="item-account">
+            <span>Фамилия:</span>
+            <span>Лосев</span>
+        </div>
+        <div class="item-account">
+            <span>Дата рождения:</span>
+            <span>11.05.2003</span>
+        </div>
+    </div>
+    <a href="">
+        <div class="button-sign-in-out">
+            <span>Выйти</span>
+        </div>
+    </a>
+</div>
+{% endblock %}
