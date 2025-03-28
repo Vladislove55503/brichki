@@ -1,47 +1,15 @@
-{% extends 'brichki/base.html' %}
-
-{% load static %}
-
-{% block link %}
-<link rel="stylesheet"
-      type="text/css"
-      href="{% static 'brichki/css/header_footer_style.css' %}"/>
-<link rel="stylesheet"
-      type="text/css"
-      href="{% static 'USERS/css/user.css' %}"/>
-{% endblock %}
-
-{% block content %}
-<div class="general">
-    <span class="title-user">Регистрация</span>
-    <div class="container-user-data">
-        <div class="item-user">
-            <span>Имя:</span>
-            <input type="text">
-        </div>
-    </div>
-    <div class="container-user-data">
-        <div class="item-user">
-            <span>Фамилия:</span>
-            <input type="text">
-        </div>
-    </div>
-    <div class="container-user-data">
-        <div class="item-user">
-            <span>Год рождения:</span>
-            <input type="text">
-        </div>
-    </div>
-    <div class="container-user-data">
-        <div class="item-user">
-            <span>Пароль:</span>
-            <input type="text">
-        </div>
-    </div>
-    <a href="">
-        <div class="button-registration">
-            <span>Зарегистрироваться</span>
-        </div>
-    </a>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brichki.ru</title>
+</head>
+<body>
+    <a href="{% url 'ADS:main_page' %}">{{ user }}</a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">зарегистрироваться</button>
+    </form>
+</body>
+</html>

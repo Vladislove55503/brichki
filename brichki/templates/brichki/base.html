@@ -18,6 +18,7 @@
         <div class="navbar">
             <div class="container-site">
                 <a class="site navbar-a" href="">brichki.ru</a>
+                <a class="site navbar-a" href="">{{ user.username }}</a>
             </div>
             <div class="container-titles">
                 <a class="title-0 navbar-a" href="{% url 'ADS:main_page' %}">{{ title_left }}</a>
@@ -25,7 +26,12 @@
                 <a class="title-0 navbar-a" href="">{{ title_right }}</a>
             </div>
             <div class="container-user">
-                <a class="user navbar-a" href="{% url 'USERS:sign_in' %}">User</a>
+                {% if user.is_authenticated %}
+                    <a class="user navbar-a" href="{% url 'USERS:logout' %}">logout</a>
+                {% else %}
+                    <a class="user navbar-a" href="{% url 'USERS:login' %}">login</a>
+                    <a class="user navbar-a" href="{% url 'USERS:register' %}">register</a>
+                {% endif %}
             </div>
         </div>
     </div>

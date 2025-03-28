@@ -136,7 +136,7 @@ class MainPageViewTests(TestCase):
 
         create_filter_engine_type(pk=4, name='Электро')
 
-        response = self.client.post('', data=data_POST)
+        response = self.client.post()
 
         self.assertEqual(response.status_code, 200)
 
@@ -244,7 +244,7 @@ class MainPageViewTests(TestCase):
 
         create_filter_engine_type(pk=4, name='Электро')
 
-        response = self.client.post('', data=data_POST)
+        response = self.client.post()
 
         tag_BMW = '<span id="item-brand" class="parameter-ad">BMW</span>'
         tag_Audi = '<span id="item-brand" class="parameter-ad">Audi</span>'
