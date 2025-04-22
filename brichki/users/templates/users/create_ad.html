@@ -1,0 +1,18 @@
+{% extends 'brichki/base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/css/users.css' %}" />
+
+<div class="box">
+	<form method="post" class="box">
+		{% csrf_token %}
+		<p>user: <b><u>{{ user }}</u></b></p>
+		{{ form.as_p }}
+		<button type="submit" class="user-button">Создать объявление</button>
+	</form>
+</div>
+
+{% endblock %}

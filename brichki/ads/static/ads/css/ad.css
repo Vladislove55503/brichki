@@ -1,0 +1,22 @@
+/* info */
+
+table {
+    width: 50%;
+    height: 100%;
+}
+
+th {
+    background-color: lightgray;
+    text-align: left;
+    font-size: 18px;
+    padding: 3px;
+}
+
+.photo {
+    background-color: gray;
+    display: block;
+    width: 50%;
+    height: 40vh;
+}
+
+/* END info */

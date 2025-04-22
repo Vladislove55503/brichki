@@ -1,46 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Brichki.ru</title>
-
-    {% block link %}
-    {% endblock %}
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-<header>
-    <div>
-        <div class="navbar">
-            <div class="container-site">
-                <a class="site navbar-a" href="">brichki.ru</a>
-            </div>
-            <div class="container-titles">
-                <a class="title-0 navbar-a" href="{% url 'ADS:main_page' %}">{{ title_left }}</a>
-                <span class="title-1 navbar-a">{{ title_center }}</span>
-                <a class="title-0 navbar-a" href="">{{ title_right }}</a>
-            </div>
-            <div class="container-user">
-                <a class="user navbar-a" href="">buser</a>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Brichki.ru</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'brichki/css/base.css' %}" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <a class="item header-link" href="">Brichki.ru</a>
+                <a class="item header-link" href="">Войти</a>
             </div>
         </div>
-    </div>
-    <div class="color-gradient-header"></div>
-</header>
 
-{% block content %}
-{% endblock %}
+        {% block content %}
+        {% endblock %}
 
-<footer>
-    <div class="color-gradient-footer"></div>
-    <div class="footer">
-        <p class="email">vladwgm@gmail.com</p>
-    </div>
-</footer>
-
-</body>
+        <div class="footer">
+            <span class="item">vladwgm@gmail.com</span>
+        </div>
+    </body>
 </html>
