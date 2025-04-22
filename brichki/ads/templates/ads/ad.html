@@ -1,0 +1,61 @@
+{% extends 'brichki/base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'ads/css/ad.css' %}" />
+
+<div class="container">
+    <span class="item">{{ ad.brand }} {{ ad.model }} {{ ad.generation }}</span>
+    <span class="item">{{ ad.price }}</span>
+</div>
+<div class="container">
+    <table class="box">
+        <tr>
+            <th>Характеристики</th>
+        </tr>
+        <tr>
+            <th>Двигатель</th>
+            <th>{{ ad.engine_type }}</th>
+        </tr>
+        <tr>
+            <th>Объём двигателя</th>
+            <th>{{ ad.engine_capacity }}</th>
+        </tr>
+        <tr>
+            <th>Тип нагнетателя</th>
+            <th>{{ ad.boost_type }}</th>
+        </tr>
+        <tr>
+            <th>Привод</th>
+            <th>{{ ad.drive }}</th>
+        </tr>
+        <tr>
+            <th>Состояние</th>
+            <th>{{ ad.broken }}</th>
+        </tr>
+        <tr>
+            <th>Кузов</th>
+            <th>{{ ad.body }}</th>
+        </tr>
+        <tr>
+            <th>Пробег</th>
+            <th>{{ ad.mileage }}</th>
+        </tr>
+    </table>
+    <div class="photo box">photo</div>
+</div>
+
+<div class="container">
+    <span class="item">Комментарий</span>
+    <div class="container">
+        <span class="item">Написать</span>
+        <span class="item">Продавец</span>
+    </div>
+</div>
+<div class="box">
+    <span>{{ ad.comment }}</span>
+</div>
+
+{% endblock %}

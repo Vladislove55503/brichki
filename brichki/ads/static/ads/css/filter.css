@@ -1,0 +1,64 @@
+/* filter */
+
+.filter {
+    background-color: gray;
+    margin: 15px;
+    text-align: center;
+}
+
+form {
+    max-width: 900px;
+    margin: auto;
+}
+
+.filter-item {
+    display: inline-block;
+    width: 200px;
+    margin: 15px;
+    font-size: 25px;
+}
+
+.filter-button {
+    margin: 15px;
+    padding: 5px;
+    font-size: 25px;
+}
+
+/* END filter */
+
+/* ad */
+
+.ad-link {
+    color: black;
+}
+
+.ad {
+    background-color: lightgray;
+    margin: auto;
+    width: 1000px;
+}
+
+.ad-photo {
+    background-color: gray;
+    display: block;
+    width: 50%;
+}
+
+.ad-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ad-item {
+    display: inline-block;
+    margin: 15px;
+    font-size: 20px;
+}
+
+/* END ad */

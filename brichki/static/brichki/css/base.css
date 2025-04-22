@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* general */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    margin: 15px;
+}
+
+.item {
+    display: inline-block;
+    margin: 15px;
+    font-size: 25px;
+}
+
+/* END general */
+
+/* header */
+
+.header {
+    background-color: black;
+    color: white;
+}
+
+.header-link {
+    color: white;
+}
+
+/* END header */
+
+/* footer */
+
+.footer {
+    margin-top: auto;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+/* END footer */

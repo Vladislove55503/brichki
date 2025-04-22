@@ -1,0 +1,68 @@
+{% extends 'brichki/base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'ads/css/filter.css' %}" />
+
+<div class="filter">
+    <form method="post">
+        <div>
+            <select class="filter-item" name="brand">
+                <option value="">Марка</option>
+                <option value=""></option>
+            </select>
+            <select class="filter-item" name="model">
+                <option value="">Модель</option>
+                <option value=""></option>
+            </select>
+            <select class="filter-item" name="gen">
+                <option value="">Поколение</option>
+                <option value=""></option>
+            </select>
+        </div>
+        <div>
+            <select class="filter-item" name="gearbox">
+                <option value="">КПП</option>
+                <option value=""></option>
+            </select>
+            <select class="filter-item" name="body">
+                <option value="">Кузов</option>
+                <option value=""></option>
+            </select>
+            <select class="filter-item" name="drive">
+                <option value="">Привод</option>
+                <option value=""></option>
+            </select>
+        </div>
+        <button type="submit" class="filter-button">Искать</button>
+    </form>
+</div>
+
+<a class="ad-link">
+    <div class="ad">
+        <div class="container">
+            <div class="ad-photo box">photo</div>
+            <div class="ad-container">
+                <div class="ad-row">
+                    <span class="ad-item">Марка</span>
+                    <span class="ad-item">Модель</span>
+                    <span class="ad-item">Поколение</span>
+                </div>
+                <div class="ad-row">
+                    <span class="ad-item">Двигатель</span>
+                    <span class="ad-item">Коробка</span>
+                    <span class="ad-item">Кузов</span>
+                </div>
+                <div class="ad-row">
+                    <span class="ad-item">Пробег</span>
+                    <span class="ad-item">Год выпуска</span>
+                    <span class="ad-item">Цена</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</a>
+
+{% endblock %}

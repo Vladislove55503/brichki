@@ -14,8 +14,10 @@
             </div>
         </div>
 
-        {% block content %}
-        {% endblock %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Отправить</button>
+        </form>
 
         <div class="footer">
             <span class="item">vladwgm@gmail.com</span>

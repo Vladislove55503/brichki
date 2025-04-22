@@ -18,12 +18,13 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-
+import ads.urls
+import users.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('USERS.urls')),
-    path('', include('ADS.urls')),
+    path('', include(ads.urls)),
+    path('users/', include(users.urls)),
 ]
 
 if settings.DEBUG:

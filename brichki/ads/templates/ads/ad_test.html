@@ -1,0 +1,16 @@
+{% extends 'brichki/base.html' %}
+
+
+{% block content %}
+
+{% load static %}
+
+<div class="box">
+	<p>user: <b><u>{{ user }}</u></b></p>
+	{{ form.as_p }}
+	{{ ad }}
+<!-- 	{{ ad.brand }}
+	{{ ad.model }} -->
+</div>
+
+{% endblock %}
