@@ -8,9 +8,15 @@ from ads.models import Ad
 class AdCreateForm(ModelForm):
 	class Meta:
 		model = Ad
-		fields = ("__all__")
+		fields = (
+			'brand', 'model', 'generation', 'body', 'engine_type', 
+			'boost_type', 'drive', 'broken', 'comment', 
+			'engine_capacity', 'mileage', 'price')
 
 class AdUpdateForm(ModelForm):
 	class Meta:
 		model = Ad
-		fields = ("__all__")
+		fields = (
+			'brand', 'model', 'generation', 'body', 'engine_type', 
+			'boost_type', 'drive', 'broken', 'comment', 
+			'engine_capacity', 'mileage', 'price')

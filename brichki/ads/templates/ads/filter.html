@@ -6,63 +6,45 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'ads/css/filter.css' %}" />
 
-<div class="filter">
+
+
+<div class="filter box">
     <form method="post">
-        <div>
-            <select class="filter-item" name="brand">
-                <option value="">Марка</option>
-                <option value=""></option>
-            </select>
-            <select class="filter-item" name="model">
-                <option value="">Модель</option>
-                <option value=""></option>
-            </select>
-            <select class="filter-item" name="gen">
-                <option value="">Поколение</option>
-                <option value=""></option>
-            </select>
+        {% csrf_token %}
+        {{ form }}
+        <div class="container-button">
+            <button type="submit" class="filter-button">Искать</button>
         </div>
-        <div>
-            <select class="filter-item" name="gearbox">
-                <option value="">КПП</option>
-                <option value=""></option>
-            </select>
-            <select class="filter-item" name="body">
-                <option value="">Кузов</option>
-                <option value=""></option>
-            </select>
-            <select class="filter-item" name="drive">
-                <option value="">Привод</option>
-                <option value=""></option>
-            </select>
-        </div>
-        <button type="submit" class="filter-button">Искать</button>
     </form>
 </div>
 
-<a class="ad-link">
+{% for ad in ads %}
+
+<a class="ad-link" href="{% url 'ads:ad' pk=ad.pk %}">
     <div class="ad">
         <div class="container">
             <div class="ad-photo box">photo</div>
             <div class="ad-container">
                 <div class="ad-row">
-                    <span class="ad-item">Марка</span>
-                    <span class="ad-item">Модель</span>
-                    <span class="ad-item">Поколение</span>
+                    <span class="ad-item">{{ ad.brand }}</span>
+                    <span class="ad-item">{{ ad.model }}</span>
+                    <span class="ad-item">{{ ad.generation }}</span>
                 </div>
                 <div class="ad-row">
-                    <span class="ad-item">Двигатель</span>
-                    <span class="ad-item">Коробка</span>
-                    <span class="ad-item">Кузов</span>
+                    <span class="ad-item">{{ ad.engine_type }}</span>
+                    <span class="ad-item">{{ ad.boost_type }}</span>
+                    <span class="ad-item">{{ ad.drive }}</span>
                 </div>
                 <div class="ad-row">
-                    <span class="ad-item">Пробег</span>
-                    <span class="ad-item">Год выпуска</span>
-                    <span class="ad-item">Цена</span>
+                    <span class="ad-item">{{ ad.body }}</span>
+                    <span class="ad-item">{{ ad.mileage }}</span>
+                    <span class="ad-item">{{ ad.price }}</span>
                 </div>
             </div>
         </div>
     </div>
 </a>
+
+{% endfor %}
 
 {% endblock %}

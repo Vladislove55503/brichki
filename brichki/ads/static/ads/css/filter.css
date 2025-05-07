@@ -2,8 +2,7 @@
 
 .filter {
     background-color: gray;
-    margin: 15px;
-    text-align: center;
+    padding: 15px;
 }
 
 form {
@@ -24,12 +23,29 @@ form {
     font-size: 25px;
 }
 
+form > label {
+    font-size: 20px;
+    display: inline-block;
+    width: 140px;
+}
+
+form > select {
+    font-size: 20px;
+    display: inline-block;
+    width: 140px;
+}
+
+.container-button {
+    text-align: center;
+}
+
 /* END filter */
 
 /* ad */
 
 .ad-link {
     color: black;
+    margin-bottom: 15px;
 }
 
 .ad {

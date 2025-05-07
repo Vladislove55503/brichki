@@ -9,9 +9,50 @@
 <div class="box">
 	<form method="post" class="box">
 		{% csrf_token %}
-		<p>user: <b><u>{{ user }}</u></b></p>
-		<button formmethod="post" formaction="{% url 'users:logout' %}" formnovalidate class="user-button">Выйти</button>
+		<p>Имя: {{ user.username }}</p>
+		<p>Дата регистрации: {{ user.date_joined }}</p>
+		<button formmethod="post" formaction="{% url 'users:logout' %}" formnovalidate class="user-button">
+			Выйти</button><br>
 	</form>
+	<a href="{% url 'users:create_ad' %}">
+		<div class="box create-ad-link">
+			<span>Создать объявление</span>
+		</div>
+	</a>
+
+	{% for ad in own_ads %}
+	<a class="own-ad-link" href="{% url 'ads:ad' pk=ad.pk %}">
+		<div class="box">
+			<div class="own-ad">
+		        <div class="container">
+		            <div class="own-ad-photo box">photo</div>
+		            <div class="own-ad-container">
+		                <div class="own-ad-row">
+		                    <span class="own-ad-item">{{ ad.brand }}</span>
+		                    <span class="own-ad-item">{{ ad.model }}</span>
+		                    <span class="own-ad-item">{{ ad.generation }}</span>
+		                </div>
+		                <div class="own-ad-row">
+		                    <span class="own-ad-item">{{ ad.body }}</span>
+		                    <span class="own-ad-item">{{ ad.engine_type }}</span>
+		                    <span class="own-ad-item">{{ ad.boost_type }}</span>
+		                </div>
+		                <div class="own-ad-row">
+		                    <span class="own-ad-item">{{ ad.drive }}</span>
+		                    <span class="own-ad-item">{{ ad.broken }}</span>
+		                    <span class="own-ad-item">{{ ad.price }}</span>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="own-box-links">
+                    <a class="own-link" href="{% url 'users:update_ad' pk=ad.pk %}">Изменить</a>
+                    <a class="own-link" href="{% url 'users:delete_ad' pk=ad.pk %}">Удалить</a>
+		        </div>
+		    </div>
+		</div>
+	</a>
+	{% endfor %}
+
 </div>
 
 {% endblock %}

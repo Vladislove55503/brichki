@@ -9,8 +9,14 @@
     <body>
         <div class="header">
             <div class="container">
-                <a class="item header-link" href="">Brichki.ru</a>
-                <a class="item header-link" href="">Войти</a>
+                <a class="item header-link" href="{% url 'ads:filter' %}">Brichki.ru</a>
+                <a class="item header-link" href="{% url 'users:account' %}">
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                    {% else %}
+                        Войти
+                    {% endif %}
+                </a>
             </div>
         </div>
 

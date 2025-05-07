@@ -7,3 +7,58 @@ p {
     padding: 5px;
     font-size: 25px;
 }
+
+.create-ad-link {
+    display: inline-block;
+    background-color: gray;
+    font-size: 25px;
+    color: white;
+    padding: 15px;
+}
+
+/* own-ad */
+
+.own-ad-link {
+    color: black;
+}
+
+.own-ad {
+    background-color: lightgray;
+    width: 800px;
+}
+
+.own-ad-photo {
+    background-color: gray;
+    display: block;
+    width: 50%;
+}
+
+.own-ad-container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.own-ad-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.own-ad-item {
+    display: inline-block;
+    margin: 15px;
+    font-size: 18px;
+}
+
+.own-box-links {
+    background-color: gray;
+    padding: 15px;
+}
+
+.own-link {
+    margin-right: 15px;
+    color: white;
+    font-size: 18px;
+}
+
+/* END own-ad */
