@@ -45,12 +45,20 @@ class Ad(models.Model):
                                null=True,
                                verbose_name='Битая',
                                )
-    comment = models.TextField(max_length=10000, blank=True, default='', verbose_name='Комментарий')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1, verbose_name='Автор')
+    comment = models.TextField(
+        max_length=10000, blank=True, default='', verbose_name='Комментарий'
+        )
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, default=1, verbose_name='Автор'
+        )
     engine_capacity = models.FloatField(verbose_name='Объём двигателя')
     mileage = models.IntegerField(default=0, verbose_name='Пробег')
     price = models.IntegerField(verbose_name='Цена')
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        
+        return reverse('ads:ad', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f'{self.brand}, {self.generation}, {self.price}, {self.author}'
