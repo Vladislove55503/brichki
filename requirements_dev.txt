@@ -1,3 +1,0 @@
-Django==4.2
-django-debug-toolbar==4.3.0
-pillow==11.1.0

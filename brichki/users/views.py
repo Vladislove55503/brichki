@@ -1,25 +1,30 @@
-from django.views.generic import CreateView, UpdateView
-from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy, reverse
+from django.views.generic import (
+    CreateView, UpdateView, TemplateView, DeleteView,
+    )
+from django.contrib.auth.views import LogoutView, LoginView 
 
-from django.contrib.auth.views import LoginView 
-from django.contrib.auth.forms import AuthenticationForm
-
-from django.contrib.auth.views import LogoutView 
-
-from django.views.generic import TemplateView 
-
-from django.views.generic import DeleteView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import redirect
+from django.urls import reverse_lazy, reverse
 
 from django.core.exceptions import PermissionDenied
 
+from django.contrib.auth.models import User
+from rest_framework import viewsets
+
+from .serializers import UserSerializer
+
 from . import forms
 from ads.models import Ad
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class CreateUserView(CreateView):
@@ -32,6 +37,7 @@ class CreateUserView(CreateView):
             return redirect('users:account')
         return super().get(request, *args, **kwargs)
 
+
 class LoginUserView(LoginView):
     template_name = 'users/login.html'
     authentication_form = AuthenticationForm
@@ -42,8 +48,10 @@ class LoginUserView(LoginView):
             return redirect('users:account')
         return self.render_to_response(self.get_context_data())
 
+
 class LogoutUserView(LogoutView):
     next_page = 'users:login'
+
 
 @method_decorator(login_required(), name='dispatch')
 class UserView(TemplateView):
@@ -58,6 +66,7 @@ class UserView(TemplateView):
             'boost_type', 'drive', 'broken',
             )
         return context
+
 
 @method_decorator(login_required(), name='dispatch')
 class CreateAdView(CreateView):

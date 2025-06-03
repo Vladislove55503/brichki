@@ -1,8 +1,14 @@
 from django.urls import path, include
+from rest_framework import routers
+
 from . import views
 
 
 app_name = 'users'
+
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('reg/', views.CreateUserView.as_view(), name='reg'),
@@ -14,4 +20,5 @@ urlpatterns = [
         name='update_ad'),
     path('delete_ad/<slug:pk>', views.DeleteAdView.as_view(), 
         name='delete_ad'),
+    path('api/', include(router.urls)),
 ]
