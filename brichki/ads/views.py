@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 
 from rest_framework import viewsets
+from rest_framework import generics
 
 from . import forms
 from .models import Ad
@@ -12,11 +13,14 @@ from .forms import FilterForm
 from .serializers import AdSerializer
 
 
-class AdsViewSet(viewsets.ModelViewSet):
+class AdCreateAPIView(generics.CreateAPIView):
     serializer_class = AdSerializer
 
-    def get_queryset(self):
-        return Ad.objects.filter(author=self.request.query_params.get('pk')) 
+
+class AdListAPIView(generics.ListAPIView):
+    serializer_class = AdSerializer
+    queryset = Ad.objects.all()
+    filterset_fields = ['author',]
 
 
 class FilterView(FormView):

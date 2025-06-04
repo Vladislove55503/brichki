@@ -1,6 +1,4 @@
-from .models import (
-    Ad, Brand, Model, Generation, EngineType, BoostType, Drive, Body,
-    )
+from .models import Ad
 from rest_framework import serializers
 
 
