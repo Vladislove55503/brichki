@@ -10,17 +10,23 @@ from rest_framework import generics
 from . import forms
 from .models import Ad
 from .forms import FilterForm
-from .serializers import AdSerializer
-
-
-class AdCreateAPIView(generics.CreateAPIView):
-    serializer_class = AdSerializer
+from .serializers import AdSerializer, AdCreateSerializer
 
 
 class AdListAPIView(generics.ListAPIView):
     serializer_class = AdSerializer
     queryset = Ad.objects.all()
     filterset_fields = ['author',]
+
+
+class AdCreateAPIView(generics.CreateAPIView):
+    serializer_class = AdCreateSerializer
+    queryset = Ad.objects.all()
+
+
+class AdRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AdSerializer
+    queryset = Ad.objects.all()
 
 
 class FilterView(FormView):

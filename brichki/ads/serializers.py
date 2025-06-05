@@ -10,3 +10,9 @@ class AdSerializer(serializers.ModelSerializer):
             'drive', 'body', 'mileage', 'price',
             ]
         depth = 1
+
+
+class AdCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ad
+        fields = '__all__'
