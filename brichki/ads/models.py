@@ -49,7 +49,7 @@ class Ad(models.Model):
         max_length=10000, blank=True, default='', verbose_name='Комментарий'
         )
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, default=1, verbose_name='Автор'
+        User, on_delete=models.CASCADE, verbose_name='Автор'
         )
     engine_capacity = models.FloatField(verbose_name='Объём двигателя')
     mileage = models.IntegerField(default=0, verbose_name='Пробег')

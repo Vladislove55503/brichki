@@ -18,13 +18,18 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+
 import ads.urls
 import users.urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(ads.urls)),
     path('users/', include(users.urls)),
+
+    path('api/drf_auth/', include('rest_framework.urls', 
+        namespace='rest_framework')),
 ]
 
 if settings.DEBUG:

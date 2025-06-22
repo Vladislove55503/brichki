@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/brichki" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/virtualenv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.12 (Project_01)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.12 virtualenv at ~/Documents/portfolio/brichki_django/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
